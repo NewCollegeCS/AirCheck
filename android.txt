@@ -1,0 +1,3 @@
+title=SpaceApp
+author=Ben Carothers
+orientation=portrait
