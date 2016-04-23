@@ -1,32 +1,55 @@
-html {
-    background: url("static/img/earth_opt.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+html,body {
+  height:100%;
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-body {
-    padding-top: 20px;
-    font-size: 16px;
-    font-family: "Ubuntu", Arial;
-    background: transparent;
-    color: white;
-}
-allign-vertical {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+line-height:1em;
+text-align:center;
+paddding:0.5em;
+  font-size:80px;
+  color:#DDCCEE;
 }
 h1 {
-    font-family: "Ubuntu", Arial, sans-serif;
-    font-weight: 400;
-    font-size: 40px;
-    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size:80px;
+
 }
-small {
-    font-family: "Ubuntu", Arial;
-    color: white;
+.lead {
+    color:#DDCCEE;
+    font-weight: 600;
+
 }
-.margin-base-vertical {
-    margin: 40px 0;
+
+.container-full {
+  background: url("/../static/img/earth.jpeg") no-repeat center center fixed;
+  margin: 0 auto;
+  width: 100%;
+  min-height:100%;
+  color:#eee;
+  overflow:hidden;
 }
+
+.container-full a {
+  color:#efefef;
+  text-decoration:none;
+}
+
+.v-center {
+  margin-top:7%;
+}
+  

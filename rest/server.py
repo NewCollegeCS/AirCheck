@@ -10,7 +10,7 @@ app.config.from_object(__name__)
 app.config['TESTING'] = True
 app.config['MONGODB_SETTINGS'] = {'host': '0.0.0.0',
                                  'port': 27017,
-                                 'db' : 'Trackr_DB'}
+                                 'db' : 'aircheck_db'}
 
 app.config["SECRET_KEY"] = 'barry_allen'
 CORS(app, resources = ["*localhost*"])
