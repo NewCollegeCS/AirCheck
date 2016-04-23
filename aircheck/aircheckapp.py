@@ -62,6 +62,14 @@ class Dashboard(Screen):
         self.manager.current = 'login'
         self.manager.get_screen('login').reset_form()
 
+    def start_rate(self):
+        self.manager.transition = SlideTransition(direction="right")
+        self.manager.current = 'rate'
+        self.manager.get_screen('rate')
+
+class Rate(Screen):
+    pass
+
 class AircheckApp(App):
     username = StringProperty(None)
     password = StringProperty(None)
@@ -73,6 +81,7 @@ class AircheckApp(App):
         manager.add_widget(Login(name='login'))
         manager.add_widget(Register(name='register'))
         manager.add_widget(Dashboard(name='dashboard'))
+        manager.add_widget(Rate(name="rate"))
 
         return manager
 

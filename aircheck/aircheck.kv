@@ -30,6 +30,10 @@
 <Dashboard>:
     BoxLayout:
         orientation: 'vertical'
+        Button:
+            text: "Let's rate!"
+            font_size: 24
+            on_press: root.start_rate()
 
         Label:
             text: "Your dashboard"
@@ -38,7 +42,12 @@
             text: "Disconnect"
             font_size: 24
             on_press: root.disconnect()
-
+<Rate>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Smokey?"
+            font_size: 22
 <Login>:
     BoxLayout:
         id: login_layout
