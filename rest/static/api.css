@@ -1,55 +1,41 @@
-
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-
-html,body {
-  height:100%;
-  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+html, body {
+    height: 100%;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
-    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
     letter-spacing: 0.1em;
-line-height:1em;
-text-align:center;
-paddding:0.5em;
-  font-size:80px;
-  color:#DDCCEE;
+    line-height: 1em;
+    text-align: center;
+    paddding: 0.5em;
+    font-size: 80px;
+    color: #DDCCEE;
 }
 h1 {
     text-transform: uppercase;
     font-weight: 900;
     letter-spacing: 2px;
-    font-size:80px;
-
+    font-size: 80px;
 }
 .lead {
-    color:#DDCCEE;
+    color: #DDCCEE;
     font-weight: 600;
-
 }
-
 .container-full {
-  background: url("/../static/img/earth.jpeg") no-repeat center center fixed;
-  margin: 0 auto;
-  width: 100%;
-  min-height:100%;
-  color:#eee;
-  overflow:hidden;
+    background: url("/../static/img/earth.jpeg") no-repeat center center fixed;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100%;
+    color: #eee;
+    overflow: hidden;
 }
-
 .container-full a {
-  color:#efefef;
-  text-decoration:none;
+    color: #efefef;
+    text-decoration: none;
 }
-
 .v-center {
-  margin-top:7%;
+    margin-top: 7%;
 }
-  
