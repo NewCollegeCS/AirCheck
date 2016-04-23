@@ -1,9 +1,174 @@
 #:kivy 1.8.0
 
-FloatLayout:
-    canvas:
-        Color:
-            rgb: 1, 1, 1
-        Rectangle:
-            source: 'static/space.png'
-            size: self.size 
+<Welcome>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [30, 75, 30, 75]
+        spacing: 50
+
+        Label:
+            text: 'Bruber'
+            font_size: 25
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Button:
+                text: 'Sign In'
+                font_size: 18
+                halign: 'center'
+                text_size: root.width - 20, 20
+                on_press: root.login()
+
+            Button:
+                text: 'Sign Up'
+                font_size: 18
+                halign: 'center'
+                text_size: root.width + 20, 20
+                on_press: root.register()
+
+<Dashboard>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: "Your dashboard"
+            font_size: 32
+        Button:
+            text: "Disconnect"
+            font_size: 24
+            on_press: root.disconnect()
+
+<Login>:
+    BoxLayout:
+        id: login_layout
+        orientation: 'vertical'
+        padding: [10, 50, 10, 50]
+        spacing: 50
+
+        Label:
+            text: 'Login'
+            font_size: 32
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Login'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width - 20, 20
+
+            TextInput:
+                id: login
+                multiline: False
+                font_size: 28
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Password'
+                halign: 'left'
+                font_size: 18
+                text_size: root.width - 20, 20
+
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                font_size: 28
+
+        Button:
+            text: 'Connection'
+            font_size: 24
+
+            on_press: root.do_login(login.text, password.text)
+
+<Register>:
+    BoxLayout:
+        id: register_layout
+        orientation: 'vertical'
+        padding: [10, 50, 10, 50]
+        spacing: 50
+
+        Label:
+            text: 'Register'
+            font_size: 18
+            halgin: 'left'
+            text_size: root.width - 20, 20
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Full name'
+                halign: 'left'
+                font_size: 18
+                text_size: root.width - 20, 20
+
+            TextInput:
+                id: fullname
+                multiline: False
+                font_size: 28
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Username'
+                halign: 'left'
+                font_size: 18
+                text_size: root.width - 20, 20
+
+            TextInput:
+                id: username
+                multiline: False
+                font_size: 28
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Email'
+                halign: 'left'
+                font_size: 18
+                text_size: root.width - 20, 20
+
+            TextInput:
+                id: email
+                multiline: False
+                font_size: 28
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Password'
+                halign: 'left'
+                font_size: 18
+                text_size: root.width - 20, 20
+
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                font_size: 28
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Confirm Password'
+                halign: 'left'
+                font_size: 18
+                text_size: root.width - 20, 20
+
+            TextInput:
+                id: password_confirmation
+                multiline: False
+                password: True
+                font_size: 28
