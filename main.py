@@ -4,7 +4,7 @@
 import kivy
 kivy.require('1.8.0')
 
-from spaceapp.spaceappapp import SpaceappApp
+from aircheck.aircheckapp import AircheckApp
 
 if __name__ == "__main__":
-    SpaceappApp().run()
+    AircheckApp().run()
