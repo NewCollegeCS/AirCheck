@@ -12,7 +12,7 @@ app.config['MONGODB_SETTINGS'] = {'host': '0.0.0.0',
                                  'port': 27017,
                                  'db' : 'Trackr_DB'}
 
-app.config["SECRET_KEY"] = 'HonestEngine'
+app.config["SECRET_KEY"] = 'barry_allen'
 CORS(app, resources = ["*localhost*"])
 db = MongoEngine()
 db.init_app(app)
@@ -80,6 +80,7 @@ class checkNewUser(restful.Resource):
             return {"status":"ok"}
 
 class postUser(restful.Resource):
+
     def post(self):
         data = request.get_json()
         if not data:
@@ -117,6 +118,7 @@ class add_air_check(restful.Resource):
                 return jsonify({"status": "ok"})
 
 class get_air_check(restful.Resource):
+
     def get(self):
         data = request.get_json()
         if not data:
@@ -152,7 +154,6 @@ api.add_resource(postUser, '/postUser')
 api.add_resource(deleteUser, '/deleteUser')
 api.add_resource(add_air_check, '/addAirCheck')
 api.add_resource(get_air_check, '/getAirCheck')
-
 
 if __name__ == "__main__":
     app.debug = True
