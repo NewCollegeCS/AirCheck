@@ -3,17 +3,16 @@
 
 import unittest
 
-from spaceapp.spaceappapp import SpaceappApp
+from aircheck.aircheckapp import AircheckApp
 
-
-class TestSpaceappApp(unittest.TestCase):
-    """TestCase for SpaceappApp.
+class TestAircheckApp(unittest.TestCase):
+    """TestCase for Aircheck.
     """
     def setUp(self):
-        self.app = SpaceappApp()
+        self.app = AircheckApp()
 
     def test_name(self):
-        self.assertEqual(self.app.name, 'spaceapp')
+        self.assertEqual(self.app.name, 'aircheck')
 
     def tearDown(self):
         pass
