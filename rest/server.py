@@ -37,7 +37,7 @@ class User(db.Document):
     user_id = db.StringField(max_length = 40, unique=True, required = True)
     password = db.StringField(max_length = 40, required = True)
     user_email = db.StringField(max_length = 40, unique=True, required = True)
-    provider = db.StringField(max_length = 40, unique = True, required = True)
+    provider = db.StringField(max_length = 40, unique = False, required = True)
     air_checks = db.ListField(db.ReferenceField(Air_check))
 
     def __unicode__(self):

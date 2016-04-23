@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
+from kivy.uix.window import Window
 import os
 
 class Welcome(Screen):
@@ -38,7 +39,7 @@ class Register(Screen):
         app = App.get_running_app()
 
         # Create a connection to our server and
-        #     attempt to make a new user
+        # attempt to make a new user
 
         valid_registration = True
 
