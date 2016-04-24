@@ -45,9 +45,14 @@
 <Rate>
     BoxLayout:
         orientation: 'vertical'
-        Label:
+        Button:
             text: "Smokey?"
             font_size: 22
+            on_press: root.notice_me()
+        Button:
+            text: "Smarmy?"
+            font_size: 22
+            on_press:root.notice_me()
 <Login>:
     BoxLayout:
         id: login_layout

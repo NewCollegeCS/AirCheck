@@ -1,7 +1,7 @@
 from kivy.app import App
 from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-from kivy.uix.window import Window
+from kivy.core.window import Window
 import os
 
 class Welcome(Screen):
@@ -69,7 +69,8 @@ class Dashboard(Screen):
         self.manager.get_screen('rate')
 
 class Rate(Screen):
-    pass
+    def notice_me(self):
+        print 'lol'
 
 class AircheckApp(App):
     username = StringProperty(None)
@@ -77,7 +78,7 @@ class AircheckApp(App):
 
     def build(self):
         manager = ScreenManager()
-
+        Window.bind(on_motion=tap_direction)
         manager.add_widget(Welcome(name='welcome'))
         manager.add_widget(Login(name='login'))
         manager.add_widget(Register(name='register'))
@@ -98,3 +99,11 @@ class AircheckApp(App):
         return super(AircheckApp, self).get_application_config(
             '%s/config.cfg' % (conf_directory)
         )
+
+def tap_direction(self, etype, motionevent):
+    if motionevent.pos[0] > 400:
+        print "swiped right"
+    else:
+        print "swiped left"
+
+
