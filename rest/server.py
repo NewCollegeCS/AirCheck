@@ -10,7 +10,7 @@ app.config.from_object(__name__)
 app.config['TESTING'] = True
 app.config['MONGODB_SETTINGS'] = {'host': '0.0.0.0',
                                  'port': 27017,
-                                 'db' : 'Trackr_DB'}
+                                 'db' : 'aircheck_db'}
 
 app.config["SECRET_KEY"] = 'barry_allen'
 CORS(app, resources = ["*localhost*"])
@@ -28,17 +28,17 @@ DEFAULT_REPRESENTATIONS = {'application/json': output_json}
 def index():
     return flask.render_template('index.html')
 
-class air_check(db.Document):
+class Air_check(db.Document):
     location = db.StringField(max_length = 100, required = True)
     timestamp = db.StringField(max_length = 40)
     response = db.StringField(max_length = 40)
 
-class user(db.Document):
+class User(db.Document):
     user_id = db.StringField(max_length = 40, unique=True, required = True)
     password = db.StringField(max_length = 40, required = True)
     user_email = db.StringField(max_length = 40, unique=True, required = True)
-    provider = db.StringField(max_length = 40, unique = True, required = True)
-    air_checks = db.ListField(db.ReferenceField(air_check))
+    provider = db.StringField(max_length = 40, unique = False, required = True)
+    air_checks = db.ListField(db.ReferenceField(Air_check))
 
     def __unicode__(self):
         return self.user_id
@@ -56,7 +56,7 @@ class getUser(restful.Resource):
 
 class loginUser(restful.Resource):
 
-    def get(self, user_id=None, password=None):
+    def get(self):
         data = request.get_json()
         password = data.get('password')
         user_id = data.get('user_id')
