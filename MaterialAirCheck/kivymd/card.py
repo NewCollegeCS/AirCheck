@@ -18,7 +18,7 @@ Builder.load_string('''
 ''')
 
 
-class MDCard(ThemableBehavior, ElevationBehavior, BoxLayout):
+class MDCard(ThemableBehavior, BoxLayout):
     r = BoundedNumericProperty(1., min=0., max=1.)
     g = BoundedNumericProperty(1., min=0., max=1.)
     b = BoundedNumericProperty(1., min=0., max=1.)
