@@ -44,7 +44,7 @@ class User(db.Document):
         return self.user_id
 
 class getUser(restful.Resource):
-    
+
     def get(self, user_id = None):
         data = request.get_json()
         user_id = data.get("user_id")
