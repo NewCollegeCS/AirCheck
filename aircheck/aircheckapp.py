@@ -3,7 +3,6 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.core.window import Window
-import os
 import requests
 from hashlib import sha1
 
@@ -54,9 +53,6 @@ class Login(Screen):
             self.manager.current = 'dashboard'
         else:
             self.reset_form()
-
-        app.config.read(app.get_application_config())
-        app.config.write()
 
     def reset_form(self):
         self.ids['login'].text = ""
@@ -127,7 +123,7 @@ class Rate(Screen):
 
 	def negativeReply(self):
 		print 'no'
-		
+
 	def positiveReply(self):
 		print 'yes'
 
@@ -144,19 +140,6 @@ class AircheckApp(App):
         manager.add_widget(Rate(name="rate"))
 
         return manager
-
-    def get_application_config(self):
-        if (not self.user_id):
-            return super(AircheckApp, self).get_application_config()
-
-        conf_directory = self.user_data_dir + '/' + self.user_id
-
-        if (not os.path.exists(conf_directory)):
-            os.makedirs(conf_directory)
-
-        return super(AircheckApp, self).get_application_config(
-            '%s/config.cfg' % (conf_directory)
-        )
 
 def tap_direction(self, etype, motionevent):
     if motionevent.pos[0] > 400:
