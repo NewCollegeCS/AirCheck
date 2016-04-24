@@ -17,7 +17,6 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.core.window import Window
-import os
 import requests
 from hashlib import sha1
 
@@ -41,11 +40,33 @@ BoxLayout:
 
     ScreenManager:
         id: manager
+
+        Screen:
+            name: 'welcome'
+
+            MDLabel:
+                text: 'Bruber'
+                font_size: 25
+
+            MDRaisedButton:
+                text: 'Sign In'
+                font_size: 18
+                halign: 'center'
+                text_size: root.width - 20, 20
+                on_press: root.login()
+                
+            MDRaisedButton:
+                text: 'Sign Up'
+                font_size: 18
+                halign: 'center'
+                text_size: root.width + 20, 20
+                on_press: root.register()
+
         Screen:
             name: 'card'
             MDCard:
                 size_hint: None, None
-                size: dp(320), dp(180)
+                size: dp(250), dp(420)
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
         Screen:
@@ -72,29 +93,6 @@ BoxLayout:
                             size_hint: 0.8, None
                             height: dp(48)
                             hint_text: "Write something"
-
-        Screen:
-            name: 'welcome'
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: 50
-                MDLabel:
-                    orientation: 'vertical'
-                    text: 'Bruber'
-                    font_size: 25
-                BoxLayout:
-                    MDRaisedButton:
-                        text: 'Sign In'
-                        font_size: 18
-                        halign: 'center'
-                        text_size: root.width - 20, 20
-                        on_press: root.login()
-                    MDRaisedButton:
-                        text: 'Sign Up'
-                        font_size: 18
-                        halign: 'center'
-                        text_size: root.width + 20, 20
-                        on_press: root.register()
 
         Screen:
             name: 'dash'
@@ -292,9 +290,6 @@ class Login(Screen):
         else:
             self.reset_form()
 
-        app.config.read(app.get_application_config())
-        app.config.write()
-
     def reset_form(self):
         self.ids['login'].text = ""
         self.ids['password'].text = ""
@@ -386,19 +381,6 @@ class AircheckApp(App):
         main_widget = Builder.load_string(main_widget_kv)
         self.nav_drawer = KitchenSinkNavDrawer()
         return main_widget
-
-    def get_application_config(self):
-        if (not self.user_id):
-            return super(AircheckApp, self).get_application_config()
-
-        conf_directory = self.user_data_dir + '/' + self.user_id
-
-        if (not os.path.exists(conf_directory)):
-            os.makedirs(conf_directory)
-
-        return super(AircheckApp, self).get_application_config(
-            '%s/config.cfg' % (conf_directory)
-        )
 
 def tap_direction(self, etype, motionevent):
     if motionevent.pos[0] > 400:
