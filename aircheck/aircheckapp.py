@@ -2,7 +2,6 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-from kivy.uix.window import Window
 import os
 import requests
 from hashlib import sha1
