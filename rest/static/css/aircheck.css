@@ -456,3 +456,20 @@ label:hover:before {
   color: #aaaaaa;
   font-weight: bold;
 }
+
+#how-it-is-today h3 {
+    color: #454545;
+}
+
+#how-it-is-today img {
+    width: 350px;
+    height: auto;
+}
+
+.text-how-it-is-today {
+    margin-top: 75px;
+}
+
+#how-it-is-today {
+    padding-bottom: 75px;
+}
