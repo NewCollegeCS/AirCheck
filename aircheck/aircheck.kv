@@ -44,15 +44,13 @@
             on_press: root.disconnect()
 <Rate>
     BoxLayout:
-        orientation: 'vertical'
-        Button:
-            text: "Smokey?"
-            font_size: 22
-            on_press: root.notice_me()
-        Button:
-            text: "Smarmy?"
-            font_size: 22
-            on_press:root.notice_me()
+        orientation: 'horizontal'
+        ImageButton:
+            source: 'positive.png'
+            on_press: root.positiveReply()
+        ImageButton:
+            source: 'negative.png'
+            on_press: root.negativeReply()
 <Login>:
     BoxLayout:
         id: login_layout
@@ -160,3 +158,11 @@
             font_size: 24
 
             on_press: root.do_register(username.text, email.text, password.text)
+
+<ImageButton@Button>:
+    source: None
+
+    Image:
+        source: root.source
+        pos: root.pos
+        size: root.size

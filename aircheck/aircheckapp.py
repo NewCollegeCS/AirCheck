@@ -124,8 +124,12 @@ class Dashboard(Screen):
         self.manager.get_screen('rate')
 
 class Rate(Screen):
-    def notice_me(self):
-        print 'lol'
+
+	def negativeReply(self):
+		print 'no'
+		
+	def positiveReply(self):
+		print 'yes'
 
 class AircheckApp(App):
     user_id = StringProperty(None)
