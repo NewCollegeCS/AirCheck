@@ -29,6 +29,7 @@ main_widget_kv = '''
 #:import OneLineListItem kivymd.list.OneLineListItem
 #:import SingleLineTextField kivymd.textfields.SingleLineTextField
 #:import MDCard kivymd.card.MDCard
+#:import MDFlatbutton kivymd.button.MDFlatButton
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 #:import colors kivymd.color_definitions.colors
 
@@ -44,9 +45,43 @@ BoxLayout:
         Screen:
             name: 'card'
             MDCard:
+                orientation: 'vertical'
                 size_hint: None, None
-                size: dp(320), dp(180)
+                size: dp(388), dp(480)
+                background_color: 0,0,0,.27
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                BoxLayout:
+                    size: root.size
+                    orientation: 'vertical'
+                    halign: 'center'
+                    Image:
+                        id: _header_bg
+                        source: './assets/Collaborator Male-96.png'
+                        keep_ratio: True
+                    MDLabel:
+                        font_style:'Body1'
+                        size_hint: None, None
+                        width: dp(388)
+                        height: dp(40)
+                        font_size: 25
+                        halign: 'center'
+                        text: 'Have you been coughing?'
+                BoxLayout:
+                    size: root.size
+                    pos: root.pos
+                    orientation: 'horizontal'
+                    MDFlatButton:
+                        text: 'Yes'
+                        size_hint: (2, .3)
+                        on_press: root.login()
+                        background_color: 0,.8,0,.4
+                    MDFlatButton:
+                        text: 'No'
+                        on_press: root.login()
+                        size_hint: (2, .3)
+                        background_color: .8,0,0,.4
+
+
 
         Screen:
             name: 'list'
