@@ -1,7 +1,13 @@
 from kivy.app import App
+from kivy.uix.widget import Widget
 from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 import os
+import requests
+from hashlib import sha1
+
+class Header(Widget):
+    "TODO"
 
 class Welcome(Screen):
 
@@ -16,14 +22,37 @@ class Welcome(Screen):
 
 class Login(Screen):
 
-    def do_login(self, login_text, password_text):
+    def do_login(self, username, password):
         app = App.get_running_app()
 
-        app.username = login_text
-        app.password = password_text
+        # Query our server and database with a person's
+        #     credentials
 
-        self.manager.transition = SlideTransition(direction="left")
-        self.manager.current = 'dashboard'
+        credentials = {
+            'user_id': Utils.hash(username),
+            'password': Utils.salt(password)
+        }
+
+        r = requests.get("http://aircheck.ncf.space" + "/LoginUser", json=credentials)
+
+        # Check whether it has been a valid request, we assume it does
+        #     and that we've been sent back a user_id
+
+        print(r.status_code)
+        print(r.json())
+
+        valid_login = False
+        if r.status_code == 200:
+            r = r.json()
+            if r['status'] == 'ok':
+                valid_login = True
+
+        if valid_login:
+            app.user_id = r['log_in']
+            self.manager.transition = SlideTransition(direction="left")
+            self.manager.current = 'dashboard'
+        else:
+            self.reset_form()
 
         app.config.read(app.get_application_config())
         app.config.write()
@@ -34,24 +63,50 @@ class Login(Screen):
 
 class Register(Screen):
 
-    def do_register(self, name_text, email_text, password_text):
+    def do_register(self, username, email, password):
         app = App.get_running_app()
 
-        # Create a connection to our server and
-        #     attempt to make a new user
+        user_id = Utils.hash(username)
 
-        valid_registration = True
+        check_registration = {
+            'user_id': user_id,
+            'email': email,
+        }
+
+        r = requests.get("http://aircheck.ncf.space" + "/checkNew", json=check_registration)
+
+        user_exists = True
+        if r.status_code == 200 and r.json()['status'] == 'ok':
+            user_exists = False
+
+        if user_exists:
+            print("Error: User exits")
+            self.reset_form()
+
+        registration_info = {
+            'user_id': user_id,
+            'email': email,
+            'password': Utils.salt(password),
+            'provider':'bruber'
+        }
+
+        r = requests.post("http://aircheck.ncf.space" + "/postUser", json=registration_info)
+
+        valid_registration = False
+        if r.status_code == 200:
+            r = requests.get("http://aircheck.ncf.space" + "/checkNew", json=check_registration)
+            if r.status_code == 200 and r.json()['status'] == 'fail':
+                valid_registration = True
 
         if valid_registration:
+            app.user_id = user_id
             self.manager.transition = SlideTransition(direction="left")
             self.manager.current = 'dashboard'
         else:
-            # Flash errors and redisplay the form
             self.reset_form()
 
     def reset_form(self):
         self.ids['username'].text = ""
-        self.ids['name'].text = ""
         self.ids['email'].text = ""
         self.ids['password'].text = ""
 
@@ -63,8 +118,7 @@ class Dashboard(Screen):
         self.manager.get_screen('login').reset_form()
 
 class AircheckApp(App):
-    username = StringProperty(None)
-    password = StringProperty(None)
+    user_id = StringProperty(None)
 
     def build(self):
         manager = ScreenManager()
@@ -77,10 +131,10 @@ class AircheckApp(App):
         return manager
 
     def get_application_config(self):
-        if (not self.username):
+        if (not self.user_id):
             return super(AircheckApp, self).get_application_config()
 
-        conf_directory = self.user_data_dir + '/' + self.username
+        conf_directory = self.user_data_dir + '/' + self.user_id
 
         if (not os.path.exists(conf_directory)):
             os.makedirs(conf_directory)
@@ -88,3 +142,12 @@ class AircheckApp(App):
         return super(AircheckApp, self).get_application_config(
             '%s/config.cfg' % (conf_directory)
         )
+
+class Utils():
+    @classmethod
+    def salt(cls, msg):
+        return Utils.hash(Utils.hash(msg))
+
+    @classmethod
+    def hash(cls, msg):
+        return sha1(msg.encode('utf-8')).hexdigest()
