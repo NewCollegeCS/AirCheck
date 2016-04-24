@@ -1,44 +1,361 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
-        <meta charset="UTF-8">
-        <title>Air Check</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="../static/api.css" type="text/css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-        <link href='http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600' rel='stylesheet'>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>AirCheck</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/aircheck.css" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
     </head>
+
     <body>
-        <div class="container-full">
-            <div class="row">
-                <div class="col-lg-12 text-center v-center">
-                    <h1 class='title'>BRUBER</h1>
-                    <p class="lead">
-                        <em>Uber</em>, but for breathing...?
-                    </p>
-                    <br>
-                    <form class="col-lg-12">
-                        <div class="input-group input-group-lg col-sm-offset-4 col-sm-4">
-                            <input type="text" class="center-block form-control input-lg" title="Enter you email." placeholder="Enter your email address">
-                            <span class="input-group-btn">
-                                <button class="btn btn-lg btn-primary" type="button">submit</button>
-                            </span>
+
+        <!-- Navigation -->
+        <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle">
+            <i class="fa fa-bars"></i>
+        </a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle">
+                    <i class="fa fa-times"></i>
+                </a>
+                <li class="sidebar-brand">
+                    <a href="#top" onclick=$("#menu-close").click();>Home</a>
+                </li>
+                <li>
+                    <a href="#map" onclick=$("#menu-close").click();>Map</a>
+                </li>
+                <li>
+                    <a href="#check" onclick=$("#menu-close").click();>AirCheck</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Header -->
+        <header id="top" class="header">
+            <div class="text-vertical-center">
+                <h1>AirCheck</h1>
+                <h3>Uber but For</h3>
+            </div>
+        </header>
+
+        <aside class="call-to-action bg-primary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h3>Add an air check</h3>
+
+                        <div class="text-center" style="padding:50px 0">
+                            <div class="logo">login</div>
+                            <!-- Main Form -->
+                            <div class="login-form-1">
+                                <form id="login-form" class="text-left">
+                                    <div class="login-form-main-message"></div>
+                                    <div class="main-login-form">
+                                        <div class="login-group">
+                                            <div class="form-group">
+                                                <label for="State" class="sr-only">State</label>
+                                                <input type="text" class="form-control" id="state" name="state" placeholder="state">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="City" class="sr-only">City</label>
+                                                <input type="text" class="form-control" id="city" name="city" placeholder="city">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address" class="sr-only">Address</label>
+                                                <input type="text" class="form-control" id="Address" name="address" placeholder="address">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="gender" class="sr-only">Gender</label>
+                                                <input type="text" class="form-control" id="gender" name="gender" placeholder="gender">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="age" class="sr-only">Age</label>
+                                                <input type="text" class="form-control" id="age" name="age" placeholder="age">
+                                            </div>
+                                            <div class="form-group login-group-checkbox">
+                                                <input type="checkbox" id="smoker" name="smoker">
+                                                <label for="smoker">smoker</label>
+                                            </div>
+                                            <div class="form-group login-group-checkbox">
+                                                <input type="checkbox" id="cough" name="cough">
+                                                <label for="cough">coughing</label>
+                                            </div>
+                                            <div class="form-group login-group-checkbox">
+                                                <input type="checkbox" id="eyes" name="eyes">
+                                                <label for="eyes">itchy eyes</label>
+                                            </div>
+                                            <div class="form-group login-group-checkbox">
+                                                <input type="checkbox" id="alergies" name="alergies">
+                                                <label for="alergies">Alergies</label>
+                                            </div>
+
+                                        </div>
+                                        <button type="submit" class="login-button">
+                                            <i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end:Main Form -->
                         </div>
-                    </form>
+
+                        <!-- FORGOT PASSWORD FORM -->
+                        <div class="text-center" style="padding:50px 0">
+                            <div class="logo">forgot password</div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
+        </aside>
+
+        <section id="contact" class="map">
+            <iframe
+                width="100%"
+                height="100%"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+                src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
+            <br/>
+            <small>
+                <a
+                    href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
+            </small>
+        </iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center v-center" style="font-size:39pt;">
-                    <a href="https://github.com/NewCollegeCS/AirCheck">
-                        <i class="icon-github"></i>
-                    </a>
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-github fa-fw fa-3x"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; AirCheck</p>
                 </div>
             </div>
-            <br><br><br><br><br>
         </div>
-   </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+        // Closes the sidebar menu
+        $("#menu-close").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+
+        // Scrolls to the selected menu item on the page
+        $(function() {
+            $('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                    var target = $(this.hash);
+                    target = target.length
+                        ? target
+                        : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <script>
+    (function($) {
+    "use strict";
+
+	// Options for Message
+	//----------------------------------------------
+  var options = {
+	  'btn-loading': '<i class="fa fa-spinner fa-pulse"></i>',
+	  'btn-success': '<i class="fa fa-check"></i>',
+	  'btn-error': '<i class="fa fa-remove"></i>',
+	  'msg-success': 'All Good! Redirecting...',
+	  'msg-error': 'Wrong login credentials!',
+	  'useAJAX': true,
+  };
+
+	// Login Form
+	//----------------------------------------------
+	// Validation
+  $("#login-form").validate({
+  	rules: {
+      lg_username: "required",
+  	  lg_password: "required",
+    },
+  	errorClass: "form-invalid"
+  });
+
+	// Form Submission
+  $("#login-form").submit(function() {
+  	remove_loading($(this));
+
+		if(options['useAJAX'] == true)
+		{
+			// Dummy AJAX request (Replace this with your AJAX code)
+		  // If you don't want to use AJAX, remove this
+  	  dummy_submit_form($(this));
+
+		  // Cancel the normal submission.
+		  // If you don't want to use AJAX, remove this
+  	  return false;
+		}
+  });
+
+	// Register Form
+	//----------------------------------------------
+	// Validation
+  $("#register-form").validate({
+  	rules: {
+      reg_username: "required",
+  	  reg_password: {
+  			required: true,
+  			minlength: 5
+  		},
+   		reg_password_confirm: {
+  			required: true,
+  			minlength: 5,
+  			equalTo: "#register-form [name=reg_password]"
+  		},
+  		reg_email: {
+  	    required: true,
+  			email: true
+  		},
+  		reg_agree: "required",
+    },
+	  errorClass: "form-invalid",
+	  errorPlacement: function( label, element ) {
+	    if( element.attr( "type" ) === "checkbox" || element.attr( "type" ) === "radio" ) {
+    		element.parent().append( label ); // this would append the label after all your checkboxes/labels (so the error-label will be the last element in <div class="controls"> )
+	    }
+			else {
+  	  	label.insertAfter( element ); // standard behaviour
+  	  }
+    }
+  });
+
+  // Form Submission
+  $("#register-form").submit(function() {
+  	remove_loading($(this));
+
+		if(options['useAJAX'] == true)
+		{
+			// Dummy AJAX request (Replace this with your AJAX code)
+		  // If you don't want to use AJAX, remove this
+  	  dummy_submit_form($(this));
+
+		  // Cancel the normal submission.
+		  // If you don't want to use AJAX, remove this
+  	  return false;
+		}
+  });
+
+	// Forgot Password Form
+	//----------------------------------------------
+	// Validation
+  $("#forgot-password-form").validate({
+  	rules: {
+      fp_email: "required",
+    },
+  	errorClass: "form-invalid"
+  });
+
+	// Form Submission
+  $("#forgot-password-form").submit(function() {
+  	remove_loading($(this));
+
+		if(options['useAJAX'] == true)
+		{
+			// Dummy AJAX request (Replace this with your AJAX code)
+		  // If you don't want to use AJAX, remove this
+  	  dummy_submit_form($(this));
+
+		  // Cancel the normal submission.
+		  // If you don't want to use AJAX, remove this
+  	  return false;
+		}
+  });
+
+	// Loading
+	//----------------------------------------------
+  function remove_loading($form)
+  {
+  	$form.find('[type=submit]').removeClass('error success');
+  	$form.find('.login-form-main-message').removeClass('show error success').html('');
+  }
+
+  function form_loading($form)
+  {
+    $form.find('[type=submit]').addClass('clicked').html(options['btn-loading']);
+  }
+
+  function form_success($form)
+  {
+	  $form.find('[type=submit]').addClass('success').html(options['btn-success']);
+	  $form.find('.login-form-main-message').addClass('show success').html(options['msg-success']);
+  }
+
+  function form_failed($form)
+  {
+  	$form.find('[type=submit]').addClass('error').html(options['btn-error']);
+  	$form.find('.login-form-main-message').addClass('show error').html(options['msg-error']);
+  }
+
+	// Dummy Submit Form (Remove this)
+	//----------------------------------------------
+	// This is just a dummy form submission. You should use your AJAX function or remove this function if you are not using AJAX.
+  function dummy_submit_form($form)
+  {
+  	if($form.valid())
+  	{
+  		form_loading($form);
+
+  		setTimeout(function() {
+  			form_success($form);
+  		}, 2000);
+  	}
+  }
+
+})(jQuery);
+</script>
+
+</body>
+
 </html>
